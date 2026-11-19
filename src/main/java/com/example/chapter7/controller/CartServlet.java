@@ -12,12 +12,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
-    private static final String PRODUCTS_PATH = "/WEB-INF/products.txt";
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
@@ -78,7 +75,7 @@ public class CartServlet extends HttpServlet {
                 cart.updateItem(productId, quantity);
                 session.setAttribute("cart", cart);
             } catch (NumberFormatException ignored) {
-                // Giữ nguyên số lượng cũ nếu nhập không phải số nguyên
+                
             }
         }
         response.sendRedirect(request.getContextPath() + "/cart?action=cart");
